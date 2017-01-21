@@ -257,10 +257,10 @@ public class TurretController : MonoBehaviour
                 CurrentTurretPlayerFour.GetComponent<Weapon>().Fire();
             }
 
-            if(Input.GetAxis("LeftTrigger") == 1)
-            {
-                GetComponent<CityBlow>().BlowUp();
-            }
+            //if(Input.GetAxis("LeftTrigger") == 1)
+            //{
+            //    GetComponent<CityBlow>().BlowUp();
+            //}
         }
     }
 
