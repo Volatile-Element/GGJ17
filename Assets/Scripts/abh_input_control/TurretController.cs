@@ -230,22 +230,22 @@ public class TurretController : MonoBehaviour
             DirectionPlayerThree = GetControllerMovement("HorizontalControllerThree");
             DirectionPlayerFour = GetControllerMovement("HorizontalControllerFour");
 
-            if (Input.GetAxis("RightTriggerControllerOne"))
+            if (Input.GetAxis("RightTriggerControllerOne") == 1)
             {
                 CurrentTurretPlayerOne.GetComponent<Weapon>().Fire();
             }
 
-            if(Input.GetAxis("RightTriggerControllerTwo"))
+            if(Input.GetAxis("RightTriggerControllerTwo") == 1)
             {
                 CurrentTurretPlayerTwo.GetComponent<Weapon>().Fire();
             }
 
-            if(Input.GetAxis("RightTriggerControllerThree"))
+            if(Input.GetAxis("RightTriggerControllerThree") == 1)
             {
                 CurrentTurretPlayerThree.GetComponent<Weapon>().Fire();
             }
 
-            if(Input.GetAxis("RightTriggerControllerFour"))
+            if(Input.GetAxis("RightTriggerControllerFour") == 1)
             {
                 CurrentTurretPlayerFour.GetComponent<Weapon>().Fire();
             }
