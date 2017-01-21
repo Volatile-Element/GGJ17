@@ -14,4 +14,11 @@ public class Enums
         SHIP,
         CITY
     }
+
+    public enum FireType
+    {
+        Lazor,
+        Wave,
+        Sound
+    }
 }
