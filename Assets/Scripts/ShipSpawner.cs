@@ -8,8 +8,6 @@ using UnityEngine;
 /// </summary>
 public class ShipSpawner : MonoBehaviour
 {
-    public GameManager GameManager;
-
     public ShipBuilder ShipBuilder = new ShipBuilder();
     public List<GameObject> SpawnedShips = new List<GameObject>();
 
@@ -23,8 +21,6 @@ public class ShipSpawner : MonoBehaviour
 
     void Start ()
     {
-        GameManager = FindObjectOfType<GameManager>();
-
         StartCoroutine(SpawnShips());
 	}
 
@@ -64,10 +60,10 @@ public class ShipSpawner : MonoBehaviour
 
     private void IncrementDifficulty()
     {
-        GameManager.DifficultyManager.IncrementSpawnedShips();
+        GameManager.Instance.DifficultyManager.IncrementSpawnedShips();
 
-        MinSpawnTime = Mathf.Clamp(10 - GameManager.DifficultyManager.GetDifficultyMultiplier() * 2, 0.5f, 10);
-        MaxSpawntime = Mathf.Clamp(10 - GameManager.DifficultyManager.GetDifficultyMultiplier(), 0.5f, 10);
+        MinSpawnTime = Mathf.Clamp(10 - GameManager.Instance.DifficultyManager.GetDifficultyMultiplier() * 2, 0.5f, 10);
+        MaxSpawntime = Mathf.Clamp(10 - GameManager.Instance.DifficultyManager.GetDifficultyMultiplier(), 0.5f, 10);
     }
 
     public void DestoryShip(GameObject ship)
@@ -75,6 +71,8 @@ public class ShipSpawner : MonoBehaviour
         SpawnedShips.Remove(ship);
 
         Destroy(ship);
+
+        GameManager.Instance.ScoreKeeper.AddToScore(Enums.ScoreReward.DESTROYED_SHIP);
     }
 
     IEnumerator SpawnShips()

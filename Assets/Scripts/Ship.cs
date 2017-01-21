@@ -34,6 +34,6 @@ public class Ship : MonoBehaviour
     public void DestroyShip()
     {
         ShipSpawner.DestoryShip(gameObject);
-        ShipSpawner.GameManager.DifficultyManager.IncrementDestroyedShips();
+        GameManager.Instance.DifficultyManager.IncrementDestroyedShips();
     }
 }
