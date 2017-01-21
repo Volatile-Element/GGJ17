@@ -7,11 +7,11 @@ public class DifficultyManager
     //Hello I manage how much of your life is hell!
     public float SpawnedShips;
     public float DestroyedShips;
-    public System.TimeSpan GameStartTime;
+    public System.DateTime GameStartTime;
 
     public DifficultyManager()
     {
-        GameStartTime = GetCurrentTimeSpan();
+        GameStartTime = GetCurrentDateTime();
     }
 
     public void IncrementSpawnedShips()
@@ -26,16 +26,14 @@ public class DifficultyManager
     
     public int GetDifficultyMultiplier()
     {
-        return System.Convert.ToInt32((SpawnedShips + DestroyedShips) * (GetCurrentTimeSpan().TotalMinutes - GameStartTime.TotalMinutes) / SpawnedShips);
+        var initial = (SpawnedShips + DestroyedShips) * (GetCurrentDateTime() - GameStartTime).TotalMinutes / SpawnedShips == 0 ? 1 : SpawnedShips;
+        initial = Mathf.Clamp(initial, 1, float.MaxValue);
+
+        return System.Convert.ToInt32(initial);
     }
 
-    private System.TimeSpan GetCurrentTimeSpan()
+    private System.DateTime GetCurrentDateTime()
     {
-        return new System.TimeSpan(System.DateTime.Now.Ticks);
-    }
-
-    private double GetCurrentTimeSpanMintues()
-    {
-        return GetCurrentTimeSpan().TotalMinutes;
+        return System.DateTime.Now;
     }
 }
