@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class WaveController : MonoBehaviour
 {
@@ -9,6 +10,8 @@ public class WaveController : MonoBehaviour
     public int CurrentWave = 0;
 
     public List<WaveItem> WaveItems = new List<WaveItem>();
+
+    public WaveEvent OnWaveChange = new WaveEvent();
 
 	// Use this for initialization
 	void Start ()
@@ -40,6 +43,7 @@ public class WaveController : MonoBehaviour
     private void StartWave()
     {
         CurrentWave++;
+        OnWaveChange.Invoke(CurrentWave);
         GenerateWave();
     }
 
