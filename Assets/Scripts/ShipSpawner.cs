@@ -21,10 +21,9 @@ public class ShipSpawner : MonoBehaviour
 
     void Start ()
     {
-        StartCoroutine(SpawnShips());
 	}
 
-    private GameObject SpawnShip()
+    public GameObject SpawnShip()
     {
         var shipParts = ShipBuilder.BuildShip();
         var ship = shipParts.Take(1).FirstOrDefault();
@@ -73,14 +72,5 @@ public class ShipSpawner : MonoBehaviour
         Destroy(ship);
 
         GameManager.Instance.ScoreKeeper.AddToScore(Enums.ScoreReward.DESTROYED_SHIP);
-    }
-
-    IEnumerator SpawnShips()
-    {
-        while (true)
-        {
-            SpawnShip();
-            yield return new WaitForSeconds(Random.Range(MinSpawnTime, MaxSpawntime));
-        };
     }
 }
