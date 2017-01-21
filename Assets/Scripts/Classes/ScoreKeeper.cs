@@ -7,11 +7,14 @@ public class ScoreKeeper
 {
     public int CurrentScore;
     public int ShipsDestroyed;
+    public int LastScoreAdded;
     
     public UnityEvent ScoreChanged = new UnityEvent();
 
     public void AddToScore(int change)
     {
+        LastScoreAdded = change;
+
         CurrentScore += change;
 
         ScoreChanged.Invoke();
