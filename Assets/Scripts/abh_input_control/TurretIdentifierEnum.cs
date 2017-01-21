@@ -11,4 +11,13 @@ public class TurretIdentifierEnum : MonoBehaviour {
         Turret3,
         Turret4
     }
+
+    public enum PlayerIdentifier
+    {
+        None,
+        PlayerOne,
+        PlayerTwo,
+        PlayerThree,
+        PlayerFour
+    }
 }
