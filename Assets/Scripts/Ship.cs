@@ -36,4 +36,10 @@ public class Ship : MonoBehaviour
         ShipSpawner.DestoryShip(gameObject);
         GameManager.Instance.DifficultyManager.IncrementDestroyedShips();
     }
+
+    void OnCollisionEnter(Collision collision)
+    {
+        collision.gameObject.SendMessage("DealDamage", 25);
+        DestroyShip();
+    }
 }

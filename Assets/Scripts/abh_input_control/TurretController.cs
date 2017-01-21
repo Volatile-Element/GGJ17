@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-public class TurretController : MonoBehaviour {
-
+public class TurretController : MonoBehaviour
+{
     public GameObject Turret1;
     public GameObject Turret2;
     public GameObject Turret3;
@@ -37,19 +37,19 @@ public class TurretController : MonoBehaviour {
         {
             if (Input.GetKeyDown("q"))
             {
-                CurrentTurret = Turret1;
+                ChangeTurrent(1);
             }
             else if (Input.GetKeyDown("w"))
             {
-                CurrentTurret = Turret2;
+                ChangeTurrent(2);
             }
             else if (Input.GetKeyDown("e"))
             {
-                CurrentTurret = Turret3;
+                ChangeTurrent(3);
             }
             else if (Input.GetKeyDown("r"))
             {
-                CurrentTurret = Turret4;
+                ChangeTurrent(4);
             }
         }
 
@@ -57,19 +57,19 @@ public class TurretController : MonoBehaviour {
         {
             if(Input.GetKeyDown("joystick button 0"))
             {
-                CurrentTurret = Turret1;
+                ChangeTurrent(1);
             }
             else if(Input.GetKeyDown("joystick button 1"))
             {
-                CurrentTurret = Turret2;
+                ChangeTurrent(2);
             }
             else if(Input.GetKeyDown("joystick button 2"))
             {
-                CurrentTurret = Turret3;
+                ChangeTurrent(3);
             }
             else if(Input.GetKeyDown("joystick button 3"))
             {
-                CurrentTurret = Turret4;
+                ChangeTurrent(4);
             }
         }
     }
@@ -95,13 +95,9 @@ public class TurretController : MonoBehaviour {
                 Direction = 0;
             }
 
-            if(Input.GetKeyDown("space"))
+            if(Input.GetKeyDown(KeyCode.Space))
             {
-                Fire = true;
-            }
-            else if(Input.GetKeyUp("space"))
-            {
-                Fire = false;
+                CurrentTurret.GetComponent<Weapon>().Fire();
             }
         }
 
@@ -121,6 +117,32 @@ public class TurretController : MonoBehaviour {
             }
 
             Fire = Input.GetAxis("RightTrigger") == 1 ? true : false;
+
+            if (Fire)
+            {
+                CurrentTurret.GetComponent<Weapon>().Fire();
+            }
+        }
+    }
+
+    public void ChangeTurrent(int turrent)
+    {
+        switch (turrent)
+        {
+            case 1:
+                CurrentTurret = Turret1;
+                break;
+            case 2:
+                CurrentTurret = Turret2;
+                break;
+            case 3:
+                CurrentTurret = Turret3;
+                break;
+            case 4:
+                CurrentTurret = Turret4;
+                break;
+            default:
+                break;
         }
     }
 
