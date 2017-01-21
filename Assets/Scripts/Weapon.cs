@@ -53,10 +53,10 @@ public class Weapon : MonoBehaviour
 
             RaycastHit hit;
             Vector3 forward = transform.forward;
-            Debug.DrawRay(transform.position, forward * 50, Color.green);
+            Debug.DrawRay(transform.position, forward * Distance, Color.green);
 
             var LazorLine = lazor.GetComponent<LineRenderer>();
-            if (Physics.Raycast(transform.position, transform.forward, out hit, 50))
+            if (Physics.Raycast(transform.position, transform.forward, out hit, Distance))
             {
                 var distance = Vector3.Distance(hit.transform.position, transform.position);
                 LazorLine.SetPosition(1, new Vector3(0f,0f,distance*2));
