@@ -8,4 +8,10 @@ public class Enums
     {
         DESTROYED_SHIP = 25
     }
+
+    public enum EnemySpawnTypes
+    {
+        SHIP,
+        CITY
+    }
 }
