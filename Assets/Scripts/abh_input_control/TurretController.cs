@@ -12,12 +12,15 @@ public class TurretController : MonoBehaviour
     public GameObject CurrentTurretPlayerThree;
     public GameObject CurrentTurretPlayerFour;
 
+    public GameObject MainCamera;
+
     public TurretIdentifierEnum.PlayerIdentifier TurretOneOwner;
     public TurretIdentifierEnum.PlayerIdentifier TurretTwoOwner;
     public TurretIdentifierEnum.PlayerIdentifier TurretThreeOwner;
     public TurretIdentifierEnum.PlayerIdentifier TurretFourOwner;
 
     public float SpeedMultiplier;
+    public float CameraSpeedMultiplier;
     public float WidthAdjustment;
 
     public int Direction;
@@ -47,6 +50,9 @@ public class TurretController : MonoBehaviour
         CurrentTurretPlayerThree = null;
         CurrentTurretPlayerFour = null;
         TurretOneOwner = TurretIdentifierEnum.PlayerIdentifier.PlayerOne;
+
+        CameraSpeedMultiplier = 1.3F;
+        SpeedMultiplier = 1.3F;
     }
 
     void Update()
@@ -77,6 +83,29 @@ public class TurretController : MonoBehaviour
             {
                 CurrentTurretPlayerFour.transform.RotateAround(Vector3.zero, Vector3.up, DirectionPlayerFour);
             }
+        }
+
+        MoveCamera();
+    }
+
+    private void MoveCamera()
+    {
+        if(Input.GetAxis("HorizontalCamera") < 0)
+        {
+            MainCamera.transform.RotateAround(Vector3.zero, Vector3.up, System.Math.Abs(Input.GetAxis("HorizontalCamera") * CameraSpeedMultiplier));
+        }
+        else if(Input.GetAxis("HorizontalCamera") > 0)
+        {
+            MainCamera.transform.RotateAround(Vector3.zero, Vector3.up, (Input.GetAxis("HorizontalCamera") * CameraSpeedMultiplier) * -1);
+        }
+
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            MainCamera.transform.RotateAround(Vector3.zero, Vector3.up, 1 * CameraSpeedMultiplier);
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            MainCamera.transform.RotateAround(Vector3.zero, Vector3.up, -1 * CameraSpeedMultiplier);
         }
     }
 
@@ -168,19 +197,19 @@ public class TurretController : MonoBehaviour
     {
         if(UseKeyboard)
         {
-            if (Input.GetKeyDown("q"))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 ChangeTurrent(1);
             }
-            else if (Input.GetKeyDown("w"))
+            else if (Input.GetKeyDown(KeyCode.W))
             {
                 ChangeTurrent(2);
             }
-            else if (Input.GetKeyDown("e"))
+            else if (Input.GetKeyDown(KeyCode.E))
             {
                 ChangeTurrent(3);
             }
-            else if (Input.GetKeyDown("r"))
+            else if (Input.GetKeyDown(KeyCode.R))
             {
                 ChangeTurrent(4);
             }
@@ -188,19 +217,19 @@ public class TurretController : MonoBehaviour
 
         if (UseXbox)
         {
-            if(Input.GetKeyDown("joystick button 0"))
+            if(Input.GetKeyDown(KeyCode.Joystick1Button0))
             {
                 ChangeTurrent(1);
             }
-            else if(Input.GetKeyDown("joystick button 1"))
+            else if(Input.GetKeyDown(KeyCode.Joystick1Button1))
             {
                 ChangeTurrent(2);
             }
-            else if(Input.GetKeyDown("joystick button 2"))
+            else if(Input.GetKeyDown(KeyCode.Joystick1Button2))
             {
                 ChangeTurrent(3);
             }
-            else if(Input.GetKeyDown("joystick button 3"))
+            else if(Input.GetKeyDown(KeyCode.Joystick1Button3))
             {
                 ChangeTurrent(4);
             }
@@ -256,19 +285,15 @@ public class TurretController : MonoBehaviour
     {
         if(UseKeyboard)
         {
-            if(Input.GetKeyDown("left"))
+            if (Input.GetKey(KeyCode.A))
             {
                 Direction = -1;
             }
-            else if(Input.GetKeyDown("right"))
+            else if (Input.GetKey(KeyCode.D))
             {
                 Direction = 1;
             }
-            else if(Input.GetKeyUp("left"))
-            {
-                Direction = 0;
-            }
-            else if(Input.GetKeyUp("right"))
+            else if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
             {
                 Direction = 0;
             }
