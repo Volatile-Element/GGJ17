@@ -12,15 +12,12 @@ public class TurretController : MonoBehaviour
     public GameObject CurrentTurretPlayerThree;
     public GameObject CurrentTurretPlayerFour;
 
-    public GameObject MainCamera;
-
     public TurretIdentifierEnum.PlayerIdentifier TurretOneOwner;
     public TurretIdentifierEnum.PlayerIdentifier TurretTwoOwner;
     public TurretIdentifierEnum.PlayerIdentifier TurretThreeOwner;
     public TurretIdentifierEnum.PlayerIdentifier TurretFourOwner;
 
     public float SpeedMultiplier;
-    public float CameraSpeedMultiplier;
     public float WidthAdjustment;
 
     public float Direction;
@@ -51,7 +48,6 @@ public class TurretController : MonoBehaviour
         CurrentTurretPlayerFour = null;
         TurretOneOwner = TurretIdentifierEnum.PlayerIdentifier.PlayerOne;
 
-        CameraSpeedMultiplier = 1.3F;
         SpeedMultiplier = 1.3F;
     }
 
@@ -83,29 +79,6 @@ public class TurretController : MonoBehaviour
             {
                 CurrentTurretPlayerFour.transform.RotateAround(Vector3.zero, Vector3.up, DirectionPlayerFour);
             }
-        }
-
-        MoveCamera();
-    }
-
-    private void MoveCamera()
-    {
-        if(Input.GetAxis("HorizontalCamera") < 0)
-        {
-            MainCamera.transform.RotateAround(Vector3.zero, Vector3.up, System.Math.Abs(Input.GetAxis("HorizontalCamera") * CameraSpeedMultiplier));
-        }
-        else if(Input.GetAxis("HorizontalCamera") > 0)
-        {
-            MainCamera.transform.RotateAround(Vector3.zero, Vector3.up, (Input.GetAxis("HorizontalCamera") * CameraSpeedMultiplier) * -1);
-        }
-
-        if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            MainCamera.transform.RotateAround(Vector3.zero, Vector3.up, 1 * CameraSpeedMultiplier);
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            MainCamera.transform.RotateAround(Vector3.zero, Vector3.up, -1 * CameraSpeedMultiplier);
         }
     }
 
@@ -199,38 +172,47 @@ public class TurretController : MonoBehaviour
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
+                GetComponent<CameraControl>().ChangeCamera(CurrentTurret, Turret1);
                 ChangeTurrent(1);
             }
             else if (Input.GetKeyDown(KeyCode.W))
             {
+                GetComponent<CameraControl>().ChangeCamera(CurrentTurret, Turret2);
                 ChangeTurrent(2);
             }
             else if (Input.GetKeyDown(KeyCode.E))
             {
+                GetComponent<CameraControl>().ChangeCamera(CurrentTurret, Turret3);
                 ChangeTurrent(3);
             }
             else if (Input.GetKeyDown(KeyCode.R))
             {
+                GetComponent<CameraControl>().ChangeCamera(CurrentTurret, Turret4);
                 ChangeTurrent(4);
             }
         }
 
         if (UseXbox)
         {
-            if(Input.GetKeyDown(KeyCode.Joystick1Button0))
+            
+            if(Input.GetKeyDown(KeyCode.JoystickButton0))
             {
+                GetComponent<CameraControl>().ChangeCamera(CurrentTurret, Turret1);
                 ChangeTurrent(1);
             }
-            else if(Input.GetKeyDown(KeyCode.Joystick1Button1))
+            else if(Input.GetKeyDown(KeyCode.JoystickButton1))
             {
+                GetComponent<CameraControl>().ChangeCamera(CurrentTurret, Turret2);
                 ChangeTurrent(2);
             }
-            else if(Input.GetKeyDown(KeyCode.Joystick1Button2))
+            else if(Input.GetKeyDown(KeyCode.JoystickButton2))
             {
+                GetComponent<CameraControl>().ChangeCamera(CurrentTurret, Turret3);
                 ChangeTurrent(3);
             }
-            else if(Input.GetKeyDown(KeyCode.Joystick1Button3))
+            else if(Input.GetKeyDown(KeyCode.JoystickButton3))
             {
+                GetComponent<CameraControl>().ChangeCamera(CurrentTurret, Turret4);
                 ChangeTurrent(4);
             }
         }
