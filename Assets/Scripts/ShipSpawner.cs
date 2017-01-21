@@ -54,7 +54,7 @@ public class ShipSpawner : MonoBehaviour
         var mineX = 1000 * Mathf.Cos(angle);
         var mineY = 1000 * Mathf.Sin(angle);
 
-        return new Vector3(mineX, 0, mineY);
+        return new Vector3(mineX, PlaneManager.Instance.GetCurrentPlaneHeight(), mineY);
     }
 
     private void IncrementDifficulty()
