@@ -52,8 +52,8 @@ public class ShipSpawner : MonoBehaviour
     {
         int angle = Random.Range(0, 360);
 
-        var mineX = 200 * Mathf.Cos(angle);
-        var mineY = 200 * Mathf.Sin(angle);
+        var mineX = 1000 * Mathf.Cos(angle);
+        var mineY = 1000 * Mathf.Sin(angle);
 
         return new Vector3(mineX, 0, mineY);
     }
