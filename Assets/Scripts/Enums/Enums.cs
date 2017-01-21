@@ -14,4 +14,10 @@ public class Enums
         SHIP,
         CITY
     }
+
+    public enum GamePlane
+    {
+        SEA,
+        SKY
+    }
 }
