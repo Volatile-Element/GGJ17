@@ -12,24 +12,27 @@ public class TurretController : MonoBehaviour
     public GameObject CurrentTurretPlayerThree;
     public GameObject CurrentTurretPlayerFour;
 
+    public GameObject MainCamera;
+
     public TurretIdentifierEnum.PlayerIdentifier TurretOneOwner;
     public TurretIdentifierEnum.PlayerIdentifier TurretTwoOwner;
     public TurretIdentifierEnum.PlayerIdentifier TurretThreeOwner;
     public TurretIdentifierEnum.PlayerIdentifier TurretFourOwner;
 
     public float SpeedMultiplier;
+    public float CameraSpeedMultiplier;
     public float WidthAdjustment;
 
-    public int Direction;
+    public float Direction;
     public bool Fire;
 
-    public int DirectionPlayerOne;
+    public float DirectionPlayerOne;
     public bool FirePlayerOne;
-    public int DirectionPlayerTwo;
+    public float DirectionPlayerTwo;
     public bool FirePlayerTwo;
-    public int DirectionPlayerThree;
+    public float DirectionPlayerThree;
     public bool FirePlayerThree;
-    public int DirectionPlayerFour;
+    public float DirectionPlayerFour;
     public bool FirePlayerFour;
 
     public bool UseKeyboard;
@@ -47,7 +50,9 @@ public class TurretController : MonoBehaviour
         CurrentTurretPlayerThree = null;
         CurrentTurretPlayerFour = null;
         TurretOneOwner = TurretIdentifierEnum.PlayerIdentifier.PlayerOne;
-        SinglePlayer = true;
+
+        CameraSpeedMultiplier = 1.3F;
+        SpeedMultiplier = 1.3F;
     }
 
     void Update()
@@ -78,6 +83,29 @@ public class TurretController : MonoBehaviour
             {
                 CurrentTurretPlayerFour.transform.RotateAround(Vector3.zero, Vector3.up, DirectionPlayerFour);
             }
+        }
+
+        MoveCamera();
+    }
+
+    private void MoveCamera()
+    {
+        if(Input.GetAxis("HorizontalCamera") < 0)
+        {
+            MainCamera.transform.RotateAround(Vector3.zero, Vector3.up, System.Math.Abs(Input.GetAxis("HorizontalCamera") * CameraSpeedMultiplier));
+        }
+        else if(Input.GetAxis("HorizontalCamera") > 0)
+        {
+            MainCamera.transform.RotateAround(Vector3.zero, Vector3.up, (Input.GetAxis("HorizontalCamera") * CameraSpeedMultiplier) * -1);
+        }
+
+        if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            MainCamera.transform.RotateAround(Vector3.zero, Vector3.up, 1 * CameraSpeedMultiplier);
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            MainCamera.transform.RotateAround(Vector3.zero, Vector3.up, -1 * CameraSpeedMultiplier);
         }
     }
 
@@ -169,19 +197,19 @@ public class TurretController : MonoBehaviour
     {
         if(UseKeyboard)
         {
-            if (Input.GetKeyDown("q"))
+            if (Input.GetKeyDown(KeyCode.Q))
             {
                 ChangeTurrent(1);
             }
-            else if (Input.GetKeyDown("w"))
+            else if (Input.GetKeyDown(KeyCode.W))
             {
                 ChangeTurrent(2);
             }
-            else if (Input.GetKeyDown("e"))
+            else if (Input.GetKeyDown(KeyCode.E))
             {
                 ChangeTurrent(3);
             }
-            else if (Input.GetKeyDown("r"))
+            else if (Input.GetKeyDown(KeyCode.R))
             {
                 ChangeTurrent(4);
             }
@@ -189,34 +217,30 @@ public class TurretController : MonoBehaviour
 
         if (UseXbox)
         {
-            if(Input.GetKeyDown("joystick button 0"))
+            if(Input.GetKeyDown(KeyCode.Joystick1Button0))
             {
                 ChangeTurrent(1);
             }
-            else if(Input.GetKeyDown("joystick button 1"))
+            else if(Input.GetKeyDown(KeyCode.Joystick1Button1))
             {
                 ChangeTurrent(2);
             }
-            else if(Input.GetKeyDown("joystick button 2"))
+            else if(Input.GetKeyDown(KeyCode.Joystick1Button2))
             {
                 ChangeTurrent(3);
             }
-            else if(Input.GetKeyDown("joystick button 3"))
+            else if(Input.GetKeyDown(KeyCode.Joystick1Button3))
             {
                 ChangeTurrent(4);
             }
         }
     }
 
-    private int GetControllerMovement(string controlName)
+    private float GetControllerMovement(string controlName)
     {
-        if(Input.GetAxis(controlName) < 0)
+        if(Input.GetAxis(controlName) != 0)
         {
-            return -1;
-        }
-        else if(Input.GetAxis(controlName) > 0)
-        {
-            return 1;
+            return Input.GetAxis(controlName) * SpeedMultiplier;
         }
 
         return 0;
@@ -250,6 +274,11 @@ public class TurretController : MonoBehaviour
             {
                 CurrentTurretPlayerFour.GetComponent<Weapon>().Fire();
             }
+
+            if(Input.GetAxis("LeftTrigger") == 1)
+            {
+                GetComponent<CityBlow>().BlowUp();
+            }
         }
     }
 
@@ -257,19 +286,15 @@ public class TurretController : MonoBehaviour
     {
         if(UseKeyboard)
         {
-            if(Input.GetKeyDown(KeyCode.LeftArrow))
+            if (Input.GetKey(KeyCode.A))
             {
                 Direction = -1;
             }
-            else if(Input.GetKeyDown(KeyCode.RightArrow))
+            else if (Input.GetKey(KeyCode.D))
             {
                 Direction = 1;
             }
-            else if(Input.GetKeyUp(KeyCode.LeftArrow))
-            {
-                Direction = 0;
-            }
-            else if(Input.GetKeyUp(KeyCode.RightArrow))
+            else if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
             {
                 Direction = 0;
             }
@@ -284,11 +309,11 @@ public class TurretController : MonoBehaviour
         {
             if(Input.GetAxis("Horizontal") < 0)
             {
-                Direction = -1;
+                Direction = Input.GetAxis("Horizontal") * SpeedMultiplier;
             }
             else if(Input.GetAxis("Horizontal") > 0)
             {
-                Direction = 1;
+                Direction = Input.GetAxis("Horizontal") * SpeedMultiplier;
             }
             else if(Input.GetAxis("Horizontal") == 0)
             {

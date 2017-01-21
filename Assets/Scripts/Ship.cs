@@ -7,7 +7,7 @@ public class Ship : MonoBehaviour
     public Vector3 target;
     public ShipSpawner ShipSpawner;
     public int Health = 50;
-    public float Speed = 10;
+    public float Speed = 20;
 
     // Use this for initialization
     void Start ()
