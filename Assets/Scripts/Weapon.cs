@@ -14,10 +14,10 @@ public class Weapon : MonoBehaviour
 	public void Fire()
     {
         Vector3 forward = transform.forward;
-        Debug.DrawRay(transform.position, forward * 50, Color.green);
+        Debug.DrawRay(transform.position, forward * 600, Color.green);
         RaycastHit hit;
 
-        if (Physics.Raycast(transform.position, forward, out hit, 50))
+        if (Physics.Raycast(transform.position, forward, out hit, 600))
         {
             hit.transform.SendMessage("DealDamage", Damage);
         }
