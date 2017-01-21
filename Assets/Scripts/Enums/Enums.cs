@@ -8,4 +8,11 @@ public class Enums
     {
         DESTROYED_SHIP = 25
     }
+
+    public enum FireType
+    {
+        Lazor,
+        Wave,
+        Sound
+    }
 }
