@@ -47,6 +47,7 @@ public class TurretController : MonoBehaviour
         CurrentTurretPlayerThree = null;
         CurrentTurretPlayerFour = null;
         TurretOneOwner = TurretIdentifierEnum.PlayerIdentifier.PlayerOne;
+        SinglePlayer = true;
     }
 
     void Update()
@@ -256,19 +257,19 @@ public class TurretController : MonoBehaviour
     {
         if(UseKeyboard)
         {
-            if(Input.GetKeyDown("left"))
+            if(Input.GetKeyDown(KeyCode.LeftArrow))
             {
                 Direction = -1;
             }
-            else if(Input.GetKeyDown("right"))
+            else if(Input.GetKeyDown(KeyCode.RightArrow))
             {
                 Direction = 1;
             }
-            else if(Input.GetKeyUp("left"))
+            else if(Input.GetKeyUp(KeyCode.LeftArrow))
             {
                 Direction = 0;
             }
-            else if(Input.GetKeyUp("right"))
+            else if(Input.GetKeyUp(KeyCode.RightArrow))
             {
                 Direction = 0;
             }
