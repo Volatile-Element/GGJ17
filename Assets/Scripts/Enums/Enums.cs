@@ -20,4 +20,11 @@ public class Enums
         SEA,
         SKY
     }
+  
+    public enum FireType
+    {
+        Lazor,
+        Wave,
+        Sound
+    }
 }
