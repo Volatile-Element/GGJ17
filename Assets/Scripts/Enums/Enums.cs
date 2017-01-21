@@ -15,6 +15,12 @@ public class Enums
         CITY
     }
 
+    public enum GamePlane
+    {
+        SEA,
+        SKY
+    }
+  
     public enum FireType
     {
         Lazor,
