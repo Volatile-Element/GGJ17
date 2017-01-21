@@ -7,6 +7,7 @@ public class Ship : MonoBehaviour
     public Vector3 target;
     public ShipSpawner ShipSpawner;
     public int Health = 50;
+    public float Speed = 10;
 
     // Use this for initialization
     void Start ()
@@ -17,7 +18,7 @@ public class Ship : MonoBehaviour
 	void FixedUpdate ()
     {
         //I'm always moving at the minute, a state/curve may be needed further into the jam.
-        transform.position += transform.forward * 10 * Time.deltaTime;
+        transform.position += transform.forward * Speed * Time.deltaTime;
 	}
 
     public void DealDamage(int damage)
@@ -32,7 +33,7 @@ public class Ship : MonoBehaviour
 
     public void DestroyShip()
     {
-        ShipSpawner.DestoryShip(this.gameObject);
+        ShipSpawner.DestoryShip(gameObject);
         ShipSpawner.GameManager.DifficultyManager.IncrementDestroyedShips();
     }
 }
