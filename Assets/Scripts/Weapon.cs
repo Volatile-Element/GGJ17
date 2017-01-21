@@ -9,10 +9,6 @@ public class Weapon : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            Fire();
-        }
     }
 
 	public void Fire()
