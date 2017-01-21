@@ -20,16 +20,16 @@ public class TurretController : MonoBehaviour
     public float SpeedMultiplier;
     public float WidthAdjustment;
 
-    public int Direction;
+    public float Direction;
     public bool Fire;
 
-    public int DirectionPlayerOne;
+    public float DirectionPlayerOne;
     public bool FirePlayerOne;
-    public int DirectionPlayerTwo;
+    public float DirectionPlayerTwo;
     public bool FirePlayerTwo;
-    public int DirectionPlayerThree;
+    public float DirectionPlayerThree;
     public bool FirePlayerThree;
-    public int DirectionPlayerFour;
+    public float DirectionPlayerFour;
     public bool FirePlayerFour;
 
     public bool UseKeyboard;
@@ -207,15 +207,11 @@ public class TurretController : MonoBehaviour
         }
     }
 
-    private int GetControllerMovement(string controlName)
+    private float GetControllerMovement(string controlName)
     {
-        if(Input.GetAxis(controlName) < 0)
+        if(Input.GetAxis(controlName) != 0)
         {
-            return -1;
-        }
-        else if(Input.GetAxis(controlName) > 0)
-        {
-            return 1;
+            return Input.GetAxis(controlName) * SpeedMultiplier;
         }
 
         return 0;
@@ -248,6 +244,11 @@ public class TurretController : MonoBehaviour
             if(Input.GetAxis("RightTriggerControllerFour") == 1)
             {
                 CurrentTurretPlayerFour.GetComponent<Weapon>().Fire();
+            }
+
+            if(Input.GetAxis("LeftTrigger") == 1)
+            {
+                GetComponent<CityBlow>().BlowUp();
             }
         }
     }
@@ -283,11 +284,11 @@ public class TurretController : MonoBehaviour
         {
             if(Input.GetAxis("Horizontal") < 0)
             {
-                Direction = -1;
+                Direction = Input.GetAxis("Horizontal") * SpeedMultiplier;
             }
             else if(Input.GetAxis("Horizontal") > 0)
             {
-                Direction = 1;
+                Direction = Input.GetAxis("Horizontal") * SpeedMultiplier;
             }
             else if(Input.GetAxis("Horizontal") == 0)
             {
