@@ -7,31 +7,164 @@ public class TurretController : MonoBehaviour
     public GameObject Turret3;
     public GameObject Turret4;
     public GameObject CurrentTurret;
+    public GameObject CurrentTurretPlayerOne;
+    public GameObject CurrentTurretPlayerTwo;
+    public GameObject CurrentTurretPlayerThree;
+    public GameObject CurrentTurretPlayerFour;
+
+    public TurretIdentifierEnum.PlayerIdentifier TurretOneOwner;
+    public TurretIdentifierEnum.PlayerIdentifier TurretTwoOwner;
+    public TurretIdentifierEnum.PlayerIdentifier TurretThreeOwner;
+    public TurretIdentifierEnum.PlayerIdentifier TurretFourOwner;
 
     public float SpeedMultiplier;
     public float WidthAdjustment;
 
-    public int Direction;
+    public float Direction;
     public bool Fire;
+
+    public float DirectionPlayerOne;
+    public bool FirePlayerOne;
+    public float DirectionPlayerTwo;
+    public bool FirePlayerTwo;
+    public float DirectionPlayerThree;
+    public bool FirePlayerThree;
+    public float DirectionPlayerFour;
+    public bool FirePlayerFour;
 
     public bool UseKeyboard;
     public bool UseXbox;
+    public bool SinglePlayer;
+    public bool MultiPlayer;
 
     // Use this for initialization
     void Start()
     {
         UseKeyboard = true;
         CurrentTurret = Turret1;
+        CurrentTurretPlayerOne = Turret1;
+        CurrentTurretPlayerTwo = null;
+        CurrentTurretPlayerThree = null;
+        CurrentTurretPlayerFour = null;
+        TurretOneOwner = TurretIdentifierEnum.PlayerIdentifier.PlayerOne;
     }
 
     void Update()
     {
-        GetControl();
-        ChangeTurret();
-        CurrentTurret.transform.RotateAround(Vector3.zero, Vector3.up, Direction);
+        if(SinglePlayer)
+        {
+            GetControlSinglePlayer();
+            ChangeTurretSinglePlayer();
+            CurrentTurret.transform.RotateAround(Vector3.zero, Vector3.up, Direction);
+        }
+        else if (MultiPlayer)
+        {
+            GetControlMultiplayer();
+            ChangeTurretMultiPlayer();
+            CurrentTurretPlayerOne.transform.RotateAround(Vector3.zero, Vector3.up, DirectionPlayerOne);
+
+            if(CurrentTurretPlayerTwo != null)
+            {
+                CurrentTurretPlayerTwo.transform.RotateAround(Vector3.zero, Vector3.up, DirectionPlayerTwo);
+            }
+
+            if(CurrentTurretPlayerThree != null)
+            {
+                CurrentTurretPlayerThree.transform.RotateAround(Vector3.zero, Vector3.up, DirectionPlayerThree);
+            }
+
+            if(CurrentTurretPlayerFour != null)
+            {
+                CurrentTurretPlayerFour.transform.RotateAround(Vector3.zero, Vector3.up, DirectionPlayerFour);
+            }
+        }
     }
 
-    private void ChangeTurret()
+    private void ChangeOwners(TurretIdentifierEnum.PlayerIdentifier owner, GameObject turret)
+    {
+        if(turret != null)
+        {
+            switch(owner)
+            {
+                case TurretIdentifierEnum.PlayerIdentifier.PlayerOne:
+                    CurrentTurretPlayerOne = turret;
+                    break;
+                case TurretIdentifierEnum.PlayerIdentifier.PlayerTwo:
+                    CurrentTurretPlayerTwo = turret;
+                    break;
+                case TurretIdentifierEnum.PlayerIdentifier.PlayerThree:
+                    CurrentTurretPlayerThree = turret;
+                    break;
+                case TurretIdentifierEnum.PlayerIdentifier.PlayerFour:
+                    CurrentTurretPlayerFour = turret;
+                    break;
+            }
+
+            if(turret.name == Turret1.name)
+            {
+                TurretOneOwner = owner;
+            }
+            else if(turret.name == Turret2.name)
+            {
+                TurretTwoOwner = owner;
+            }
+            else if(turret.name == Turret3.name)
+            {
+                TurretThreeOwner = owner;
+            }
+            else if(turret.name == Turret4.name)
+            {
+                TurretFourOwner = owner;
+            }
+        }
+    }
+
+    private void ChangeTurretMultiPlayer()
+    {
+        if (UseXbox)
+        {
+            CurrentTurretPlayerOne = MultipleUsersCheck("1", CurrentTurretPlayerOne, TurretIdentifierEnum.PlayerIdentifier.PlayerOne);
+            CurrentTurretPlayerTwo = MultipleUsersCheck("2", CurrentTurretPlayerTwo, TurretIdentifierEnum.PlayerIdentifier.PlayerTwo);
+            CurrentTurretPlayerThree = MultipleUsersCheck("3", CurrentTurretPlayerThree, TurretIdentifierEnum.PlayerIdentifier.PlayerThree);
+            CurrentTurretPlayerFour = MultipleUsersCheck("4", CurrentTurretPlayerFour, TurretIdentifierEnum.PlayerIdentifier.PlayerFour);
+        }
+    }
+
+    private GameObject MultipleUsersCheck(string playerNum, GameObject currentTurret, TurretIdentifierEnum.PlayerIdentifier player)
+    {
+        if(Input.GetKeyDown("joystick " + playerNum + " button 0"))
+        {
+            ChangeOwners(TurretOneOwner, currentTurret);
+
+            TurretOneOwner = player;
+            return Turret1;
+        }
+        else if(Input.GetKeyDown("joystick " + playerNum + " button 1"))
+        {
+            ChangeOwners(TurretTwoOwner, currentTurret);
+
+            TurretTwoOwner = player;
+            return Turret2;
+        }
+        else if(Input.GetKeyDown("joystick " + playerNum + " button 2"))
+        {
+            ChangeOwners(TurretThreeOwner, currentTurret);
+
+            TurretThreeOwner = player;
+            return Turret3;
+        }
+        else if(Input.GetKeyDown("joystick " + playerNum + " button 3"))
+        {
+            ChangeOwners(TurretFourOwner, currentTurret);
+
+            TurretFourOwner = player;
+            return Turret4;
+        }
+
+        return currentTurret;
+    }
+
+    private void ChangeTurretSinglePlayer()
     {
         if(UseKeyboard)
         {
@@ -74,7 +207,53 @@ public class TurretController : MonoBehaviour
         }
     }
 
-    private void GetControl()
+    private float GetControllerMovement(string controlName)
+    {
+        if(Input.GetAxis(controlName) != 0)
+        {
+            return Input.GetAxis(controlName) * SpeedMultiplier;
+        }
+
+        return 0;
+    }
+
+    private void GetControlMultiplayer()
+    {
+        if(UseXbox)
+        {
+            DirectionPlayerOne = GetControllerMovement("HorizontalControllerOne");
+            DirectionPlayerTwo = GetControllerMovement("HorizontalControllerTwo");
+            DirectionPlayerThree = GetControllerMovement("HorizontalControllerThree");
+            DirectionPlayerFour = GetControllerMovement("HorizontalControllerFour");
+
+            if (Input.GetAxis("RightTriggerControllerOne") == 1)
+            {
+                CurrentTurretPlayerOne.GetComponent<Weapon>().Fire();
+            }
+
+            if(Input.GetAxis("RightTriggerControllerTwo") == 1)
+            {
+                CurrentTurretPlayerTwo.GetComponent<Weapon>().Fire();
+            }
+
+            if(Input.GetAxis("RightTriggerControllerThree") == 1)
+            {
+                CurrentTurretPlayerThree.GetComponent<Weapon>().Fire();
+            }
+
+            if(Input.GetAxis("RightTriggerControllerFour") == 1)
+            {
+                CurrentTurretPlayerFour.GetComponent<Weapon>().Fire();
+            }
+
+            if(Input.GetAxis("LeftTrigger") == 1)
+            {
+                GetComponent<CityBlow>().BlowUp();
+            }
+        }
+    }
+
+    private void GetControlSinglePlayer()
     {
         if(UseKeyboard)
         {
@@ -105,11 +284,11 @@ public class TurretController : MonoBehaviour
         {
             if(Input.GetAxis("Horizontal") < 0)
             {
-                Direction = -1;
+                Direction = Input.GetAxis("Horizontal") * SpeedMultiplier;
             }
             else if(Input.GetAxis("Horizontal") > 0)
             {
-                Direction = 1;
+                Direction = Input.GetAxis("Horizontal") * SpeedMultiplier;
             }
             else if(Input.GetAxis("Horizontal") == 0)
             {
@@ -145,92 +324,4 @@ public class TurretController : MonoBehaviour
                 break;
         }
     }
-
-    // Update is called once per frame
-    //void FixedUpdate() {
-    //        Turret1.transform.RotateAround(Vector3.zero, Vector3.up, CheckCollisions(TurretIdentifierEnum.TurretIdentifier.Turret1, 1));
-        
-    //}
-
-    //public void RotateTurret(TurretIdentifierEnum.TurretIdentifier turret, float direction)
-    //{
-    //    switch (turret)
-    //    {
-    //        case TurretIdentifierEnum.TurretIdentifier.Turret1:
-    //                Turret1.transform.RotateAround(Vector3.zero, Vector3.up, CheckCollisions(turret, direction));
-    //            break;
-    //        case TurretIdentifierEnum.TurretIdentifier.Turret2:
-    //                Turret2.transform.RotateAround(Vector3.zero, Vector3.up, CheckCollisions(turret, direction));
-    //            break;
-    //        case TurretIdentifierEnum.TurretIdentifier.Turret3:
-    //                Turret3.transform.RotateAround(Vector3.zero, Vector3.up, CheckCollisions(turret, direction));
-    //            break;
-    //        case TurretIdentifierEnum.TurretIdentifier.Turret4:
-    //                Turret4.transform.RotateAround(Vector3.zero, Vector3.up, CheckCollisions(turret, direction));
-    //            break;
-    //    }
-    //}
-
-    //private float CheckCollisions(TurretIdentifierEnum.TurretIdentifier movingObject, float direction)
-    //{
-    //    var y1 = Turret1.transform.eulerAngles.y;
-    //    var y2 = Turret2.transform.eulerAngles.y;
-    //    var y3 = Turret3.transform.eulerAngles.y;
-    //    var y4 = Turret4.transform.eulerAngles.y;
-
-    //    var d = direction * Time.deltaTime * SpeedMultiplier;
-
-    //    if(d > 0)
-    //    {
-    //        d = d + WidthAdjustment;
-    //    }
-    //    else
-    //    {
-    //        d = d - WidthAdjustment;
-    //    }
-
-
-    //    if (movingObject == TurretIdentifierEnum.TurretIdentifier.Turret1)
-    //    {
-    //        var endPos = y1 + d;
-    //        if(endPos > 0)
-    //        {
-    //            if(endPos < y2)
-    //            {
-    //                return endPos - y2;
-    //            }
-    //            if (endPos < y3)
-    //            {
-    //                return endPos - y3;
-    //            }
-    //            if (endPos < y4)
-    //            {
-    //                return endPos - y4;
-    //            }
-    //        }
-    //        else
-    //        {
-    //            return 0;
-    //        }
-    //    }
-
-    //    if (movingObject == TurretIdentifierEnum.TurretIdentifier.Turret2)
-    //    {
-    //        var endPos = y2 + d;
-    //        return 0;
-    //    }
-
-    //    if (movingObject == TurretIdentifierEnum.TurretIdentifier.Turret3)
-    //    {
-    //        var endPos = y3 + d;
-    //        return 0;
-    //    }
-
-    //    if(movingObject == TurretIdentifierEnum.TurretIdentifier.Turret4)
-    //    {
-    //        var endPos = y4 + d;
-    //        return 0;
-    //    }
-    //    return 0;
-    //}
 }
