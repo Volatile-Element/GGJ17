@@ -156,6 +156,11 @@ public class Ship : MonoBehaviour
 
     void OnTriggerEnter(Collider collider)
     {
+        if (collider.gameObject.GetComponent<City>() == null)
+        {
+            return;
+        }
+
         collider.gameObject.SendMessage("DealDamage", 25);
         DestroyShip();
     }
