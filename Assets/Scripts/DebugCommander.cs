@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// Hello. I help during presentations. I'll do abnormal things.
@@ -34,6 +35,8 @@ public class DebugCommander : MonoBehaviour
             new DebugInput() { Key = KeyCode.C, Description = "Spawns a city.", Function = SpawnCity },
             new DebugInput() { Key = KeyCode.W, Description = "Finish current wave.", Function = FinishWave },
             new DebugInput() { Key = KeyCode.D, Description = "Destroys all ships.", Function = DestroyAllShips },
+            new DebugInput() { Key = KeyCode.G, Description = "Goes to main menu.", Function = GoToMainMenu },
+            new DebugInput() { Key = KeyCode.G, Description = "Goes to game over screen.", Function = GoToGameOver },
         };
     }
 
@@ -55,6 +58,16 @@ public class DebugCommander : MonoBehaviour
         {
             shipSpawner.DestoryShip(shipSpawner.SpawnedShips[0]);
         }
+    }
+
+    private void GoToMainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
+
+    private void GoToGameOver()
+    {
+        SceneManager.LoadScene("Game Over");
     }
 }
 

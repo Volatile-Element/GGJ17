@@ -22,7 +22,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
                 Debug.LogWarning("[Singleton] Instance '" + typeof(T) +
                     "' already destroyed on application quit." +
                     " Won't create again - returning null.");
-                return null;
+                //return null; //Jordan also removed this last at night which might be a bad idea.
             }
 
             lock (_lock)
@@ -45,7 +45,7 @@ public class Singleton<T> : MonoBehaviour where T : MonoBehaviour
                         _instance = singleton.AddComponent<T>();
                         singleton.name = "(singleton) " + typeof(T).ToString();
 
-                        DontDestroyOnLoad(singleton);
+                        //DontDestroyOnLoad(singleton); //Removed by Jordan late at night might break stuff later on.
 
                         Debug.Log("[Singleton] An instance of " + typeof(T) +
                             " is needed in the scene, so '" + singleton +

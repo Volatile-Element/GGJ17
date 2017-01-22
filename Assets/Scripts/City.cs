@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 
 public class City : MonoBehaviour
@@ -9,6 +10,8 @@ public class City : MonoBehaviour
 
     public Vector3 MoveTarget;
     public bool Moving;
+
+    public UnityEvent OnHealthChanged = new UnityEvent();
 
     void Start()
     {
@@ -31,6 +34,8 @@ public class City : MonoBehaviour
         {
             DestroyCity();
         }
+
+        OnHealthChanged.Invoke();
     }
 
     public void DestroyCity()
