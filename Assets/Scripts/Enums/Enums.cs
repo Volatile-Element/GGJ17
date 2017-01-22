@@ -6,7 +6,9 @@ public class Enums
 {
     public enum ScoreReward
     {
-        DESTROYED_SHIP = 25
+        DESTROYED_SHIP = 25,
+        DESTROYED_CITY = 50,
+        WAVE_COMPLETE = 100
     }
 
     public enum EnemySpawnTypes

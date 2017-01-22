@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[System.Serializable]
 public class DifficultyManager
 {
     //Hello I manage how much of your life is hell!
@@ -23,7 +24,17 @@ public class DifficultyManager
     {
         DestroyedShips++;
     }
-    
+
+    public void IncrementSpawnedCities()
+    {
+        SpawnedShips++; //TODO: Add city logic.
+    }
+
+    public void IncrementDestroyedCities()
+    {
+        DestroyedShips++; //TODO: Add city logic.
+    }
+
     public int GetDifficultyMultiplier()
     {
         var initial = (SpawnedShips + DestroyedShips) * (GetCurrentDateTime() - GameStartTime).TotalMinutes / SpawnedShips == 0 ? 1 : SpawnedShips;

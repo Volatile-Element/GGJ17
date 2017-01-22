@@ -6,6 +6,7 @@ using UnityEngine.Events;
 public class WaveController : MonoBehaviour
 {
     ShipSpawner ShipSpawner = new ShipSpawner();
+    CitySpawner CitySpawner = new CitySpawner();
 
     public int CurrentWave = 0;
 
@@ -38,6 +39,27 @@ public class WaveController : MonoBehaviour
                 });
             }
         }
+
+        InsertCitiesIntoWave(difficultyMultiplier);
+    }
+
+    private void InsertCitiesIntoWave(int difficultyMutliplier)
+    {
+        int citiesToSpawn = (int)(difficultyMutliplier * 1.5f);
+
+        int placementPoints = Mathf.Clamp((WaveItems.Count / citiesToSpawn) - 1, 0, int.MaxValue);
+
+        int placedPoint = placementPoints;
+        while (placedPoint < WaveItems.Count)
+        {
+            WaveItems.Add(new WaveItem()
+            {
+                SpawnType = Enums.EnemySpawnTypes.CITY,
+                TimeTillNextSpawn = Random.Range(5f, 10f)
+            });
+
+            placedPoint += placementPoints;
+        }
     }
 
     private void StartWave()
@@ -52,6 +74,13 @@ public class WaveController : MonoBehaviour
         WaveItems.Clear();
     }
 
+    public void ForceWaveEnd()
+    {
+        StopCoroutine(SpawnWave());
+        WaveItems.Clear();
+        StartCoroutine(SpawnWave());
+    }
+
     IEnumerator SpawnWave()
     {
         StartWave();
@@ -64,6 +93,7 @@ public class WaveController : MonoBehaviour
                     ShipSpawner.SpawnShip();
                     break;
                 case Enums.EnemySpawnTypes.CITY:
+                    CitySpawner.SpawnCity();
                     break;
                 default:
                     break;
@@ -77,6 +107,7 @@ public class WaveController : MonoBehaviour
     }
 }
 
+[System.Serializable]
 public class WaveItem
 {
     public Enums.EnemySpawnTypes SpawnType;
