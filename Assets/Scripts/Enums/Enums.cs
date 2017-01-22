@@ -27,6 +27,7 @@ public class Enums
     {
         Lazor,
         Wave,
-        Sound
+        Sound,
+        Plasma
     }
 }
