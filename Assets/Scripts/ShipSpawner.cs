@@ -32,12 +32,13 @@ public class ShipSpawner : MonoBehaviour
         var spawnPoint = GenerateSpawnPoint();
 
         var spawnedShip = Instantiate(ship, spawnPoint, Quaternion.identity) as GameObject;
-        
         foreach (var part in parts)
         {
             var spawnedPart = Instantiate(part, spawnPoint, Quaternion.identity) as GameObject;
             spawnedPart.transform.parent = spawnedShip.transform;
         }
+
+        spawnedShip = SetColour(spawnedShip);
 
         spawnedShip.transform.LookAt(new Vector3(0, PlaneManager.Instance.GetCurrentPlaneHeight(), 0));
 
@@ -45,6 +46,23 @@ public class ShipSpawner : MonoBehaviour
         IncrementDifficulty();
 
         return spawnedShip;
+    }
+
+    private GameObject SetColour(GameObject city)
+    {
+        var color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
+        foreach (var child in city.GetComponentsInChildren<Renderer>())
+        {
+            foreach (var material in child.materials)
+            {
+                if (material.HasProperty("_Color"))
+                {
+                    material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), material.color.a);
+                }
+            }
+        }
+
+        return city;
     }
 
     private Vector3 GenerateSpawnPoint()
