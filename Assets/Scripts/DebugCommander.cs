@@ -37,8 +37,18 @@ public class DebugCommander : MonoBehaviour
             new DebugInput() { Key = KeyCode.D, Description = "Destroys all ships.", Function = DestroyAllShips },
             new DebugInput() { Key = KeyCode.G, Description = "Goes to main menu.", Function = GoToMainMenu },
             new DebugInput() { Key = KeyCode.G, Description = "Goes to game over screen.", Function = GoToGameOver },
-            new DebugInput() { Key = KeyCode.M, Description = "Goes to Multplayer split screen.", Function = MultiplayerSplitScreen }
+            new DebugInput() { Key = KeyCode.M, Description = "Goes to Multplayer split screen.", Function = MultiplayerSplitScreen },
+            new DebugInput() { Key = KeyCode.Comma, Description = "Activated Multiplayer mode.", Function = Multiplayer },
         };
+    }
+
+    private void Multiplayer()
+    {
+        var turrets = FindObjectOfType<TurretController>();
+        turrets.SinglePlayer = false;
+        turrets.UseKeyboard = false;
+        turrets.UseXbox = true;
+        turrets.MultiPlayer = true;
     }
 
     private void MultiplayerSplitScreen()
