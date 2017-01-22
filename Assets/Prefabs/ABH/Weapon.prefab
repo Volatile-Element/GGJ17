@@ -138,7 +138,8 @@ MonoBehaviour:
   Distance: 1000
   Damage: 25
   BallScale: 1
-  Splosion: {fileID: 1981248966583986, guid: 20a44a5b3c533514c978533b7a1698cb, type: 2}
+  Splosion: {fileID: 1000011797152326, guid: acf39d9f4addf294d93fa56fa373961b, type: 2}
+  FireBall: {fileID: 1000010823978654, guid: 3228a22491941734bb83ad691d17fcb9, type: 2}
   FireType: 0
   LazorBall: {fileID: 1066563514994976, guid: e92e55d029b32e040b69294db72f7a41, type: 2}
   PlasmaBall: {fileID: 1717463786006272, guid: b23803ef0063fe740a342538c2b78421, type: 2}
