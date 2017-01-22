@@ -40,9 +40,15 @@ public class CitySpawner : MonoBehaviour
     private GameObject SetColour(GameObject city)
     {
         var color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f));
-        foreach (var child in city.transform.GetComponentsInChildren<Renderer>())
+        foreach (var child in city.GetComponentsInChildren<Renderer>())
         {
-            child.material.color = new Color(color.r, color.g, color.b, child.material.color.a);
+            foreach (var material in child.materials)
+            {
+                if (material.HasProperty("_Color"))
+                {
+                    material.color = new Color(Random.Range(0f, 1f), Random.Range(0f, 1f), Random.Range(0f, 1f), material.color.a);
+                }
+            }
         }
 
         return city;
