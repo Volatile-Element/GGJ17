@@ -10,6 +10,9 @@ public class Ship : MonoBehaviour
     public ShipSpawner ShipSpawner;
     public int Health = 50;
     public float Speed = 20;
+    public float distanceToStop;
+    public bool RotateRight;
+    public bool Kamikaze;
     public bool LightsOn = false;
     SkyBoxController skyboxController;
 
@@ -17,6 +20,15 @@ public class Ship : MonoBehaviour
     void Start ()
     {
         ShipSpawner = FindObjectOfType<ShipSpawner>();
+        distanceToStop = Random.Range(200, 500);
+        if(Random.Range(0,10) > 5)
+        {
+            RotateRight = true;
+        }
+        if(Random.Range(0,10) >= 9)
+        {
+            Kamikaze = true;
+        }
         skyboxController = FindObjectOfType<SkyBoxController>();
         WaveController = FindObjectOfType<WaveController>();
 
@@ -25,9 +37,37 @@ public class Ship : MonoBehaviour
 	
 	void FixedUpdate ()
     {
-        //I'm always moving at the minute, a state/curve may be needed further into the jam.
-        transform.position += transform.forward * Speed * Time.deltaTime;
+        Movement();
         LightChecker();
+    }
+
+    private void Movement()
+    {
+        if(Vector3.Distance(transform.position, target) < distanceToStop && !Kamikaze)
+        {
+            var lookDir = Vector3.Cross(transform.position - target, Vector3.down);
+
+            if (RotateRight)
+            {
+                lookDir = lookDir * -1;
+            }
+
+            transform.rotation = Quaternion.Lerp(transform.rotation, Quaternion.LookRotation(lookDir, Vector3.up), 0.01f);
+
+            if(RotateRight)
+            {
+                transform.RotateAround(Vector3.zero, Vector3.up, -0.07f);
+            }
+            else
+            {
+                transform.RotateAround(Vector3.zero, Vector3.up, 0.07f);
+            }
+        }
+        else
+        {
+            //I'm always moving at the minute, a state/curve may be needed further into the jam.
+            transform.position += transform.forward * Speed * Time.deltaTime;
+        }
     }
 
     public void LightChecker()
