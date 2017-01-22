@@ -62,11 +62,9 @@ public class AICity : MonoBehaviour
 
     void FixedUpdate()
     {
-        Movement();
-
         foreach (var weapon in Weapons)
         {
-            weapon.transform.RotateAround(weapon.transform.parent.position, transform.up, WeaponSpeed * Time.deltaTime);
+            weapon.transform.parent.RotateAround(weapon.transform.parent.position, transform.up, WeaponSpeed * Time.deltaTime);
 
             RaycastHit hit;
             Physics.Raycast(weapon.transform.position, weapon.transform.forward * FireDistance, out hit);
@@ -85,6 +83,8 @@ public class AICity : MonoBehaviour
                 LastFired = System.DateTime.Now;
             }
         }
+
+        Movement();
     }
 
     public void DealDamage(int damage)
