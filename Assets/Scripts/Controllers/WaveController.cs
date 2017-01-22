@@ -18,6 +18,7 @@ public class WaveController : MonoBehaviour
 	void Start ()
     {
         ShipSpawner = FindObjectOfType<ShipSpawner>();
+        CitySpawner = FindObjectOfType<CitySpawner>();
 
         StartCoroutine(SpawnWave());
     }
