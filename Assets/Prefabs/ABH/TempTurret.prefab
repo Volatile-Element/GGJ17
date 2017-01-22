@@ -134,10 +134,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8e74e5ebc10424696cff0e39b19097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LazorCharge: {fileID: 0}
+  LazorFire: {fileID: 0}
   Distance: 50
   Damage: 25
   FireType: 0
-  Emitter: {fileID: 1851086197584930}
+  LazorBall: {fileID: 1066563514994976, guid: e92e55d029b32e040b69294db72f7a41, type: 2}
+  AudioSource: {fileID: 0}
 --- !u!114 &114856327429845898
 MonoBehaviour:
   m_ObjectHideFlags: 1
