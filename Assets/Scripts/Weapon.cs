@@ -118,13 +118,13 @@ public class Weapon : MonoBehaviour
             Debug.DrawRay(rayPos, forward * Distance, Color.green);
             if (Physics.Raycast(rayPos, transform.forward, out hit, Distance))
             {
-                var distance = Vector3.Distance(hit.transform.position, transform.position);
+                var distance = Vector3.Distance(hit.point, transform.position);
                 LazorLine.SetPosition(1, new Vector3(0f,0f,distance*2));
                 LazorLine.enabled = true;
                 hit.transform.SendMessage("DealDamage", Damage);
-                var splosion = Instantiate(Splosion, hit.transform.position, hit.transform.rotation);
+                var splosion = Instantiate(Splosion, hit.point, hit.transform.rotation);
                 StartCoroutine("Explode", splosion);
-                var fireBall = Instantiate(FireBall, hit.transform.position + new Vector3(0f, BallScale * 4, 0f), hit.transform.rotation, hit.transform);
+                var fireBall = Instantiate(FireBall, hit.point + new Vector3(0f, BallScale * 4, 0f), hit.transform.rotation, hit.transform);
                 fireBall.transform.localScale = new Vector3(BallScale * 5, BallScale * 5, BallScale * 5);
                 yield return new WaitForSeconds(0.4f);
             }

@@ -37,7 +37,7 @@ GameObject:
   - component: {fileID: 4376253935770540}
   - component: {fileID: 33068578286216756}
   - component: {fileID: 23118112173903102}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: group61_pCube96
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -174,7 +174,7 @@ GameObject:
   - component: {fileID: 4320748215994314}
   - component: {fileID: 33385904300654922}
   - component: {fileID: 23638917035869398}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: group11_pPipe1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4434873514386868}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: City-Main
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   - component: {fileID: 135294792750359690}
   - component: {fileID: 114082229102579254}
   - component: {fileID: 82466325592982554}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: AI City
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -360,7 +360,7 @@ GameObject:
   - component: {fileID: 4555424884134462}
   - component: {fileID: 33458306699376094}
   - component: {fileID: 23475455792776556}
-  m_Layer: 2
+  m_Layer: 0
   m_Name: pSphere1_group11
   m_TagString: Untagged
   m_Icon: {fileID: 0}
