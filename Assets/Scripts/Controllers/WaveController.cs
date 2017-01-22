@@ -41,6 +41,7 @@ public class WaveController : MonoBehaviour
         }
 
         InsertCitiesIntoWave(difficultyMultiplier);
+        InsertBoss();
     }
 
     private void InsertCitiesIntoWave(int difficultyMutliplier)
@@ -60,6 +61,15 @@ public class WaveController : MonoBehaviour
 
             placedPoint += placementPoints;
         }
+    }
+
+    private void InsertBoss()
+    {
+        WaveItems.Add(new WaveItem()
+        {
+            SpawnType = Enums.EnemySpawnTypes.CITY,
+            TimeTillNextSpawn = Random.Range(40, 60)
+        });
     }
 
     private void StartWave()
