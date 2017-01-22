@@ -38,6 +38,11 @@ public class Ship : MonoBehaviour
             Kamikaze = true;
         }
         skyboxController = FindObjectOfType<SkyBoxController>();
+<<<<<<< d93f1a542bedfbd87a035f3e45f2352964079019
+        WaveController = FindObjectOfType<WaveController>();
+
+        WaveController.OnWaveChange.AddListener(SetTarget);
+=======
 
         var particleSystems = GetComponentsInChildren<ParticleSystem>();
 
@@ -52,9 +57,7 @@ public class Ship : MonoBehaviour
                 Right = particle;
             }
         }
-        WaveController = FindObjectOfType<WaveController>();
-
-        WaveController.OnWaveChange.AddListener(SetTarget);
+>>>>>>> Ships now shoot at the player
     }
 
     bool first = false;
