@@ -134,6 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   LazorCharge: {fileID: 8300000, guid: 73ce208743bae0840b51c4ea33b3dc62, type: 3}
   LazorFire: {fileID: 8300000, guid: 7a7ab4b4ba09a344785bc2b8e46341c3, type: 3}
+  PlasmaFire: {fileID: 8300000, guid: 127bad04d049ff14b9b2ebd5b8feb7d6, type: 3}
   Distance: 1000
   Damage: 25
   BallScale: 1
