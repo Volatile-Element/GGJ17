@@ -12,25 +12,20 @@ public class SkyBoxController : MonoBehaviour
     public Material Skybox3;
     public Material Skybox4;
     public Material Skybox5;
-    public bool KeyOverride;
+    public bool KeyOverride = false;
 
-    public int ThreeAM;
-    public int SixAM;
-    public int NineAM;
-    public int SixPM;
-    public int NinePM;
+    public int ThreeAM = 3;
+    public int SixAM = 6;
+    public int NineAM = 9;
+    public int SixPM = 18;
+    public int NinePM = 21;
+
+    public string DateSegment;
 
     // Use this for initialization
     void Start ()
     {
 		lights = GetComponentsInChildren<Light>();
-        KeyOverride = false;
-
-        ThreeAM = 3;
-        SixAM = 6;
-        NineAM = 9;
-        SixPM = 18;
-        NinePM = 21;
     }
 	
 	// Update is called once per frame
@@ -77,6 +72,7 @@ public class SkyBoxController : MonoBehaviour
 
     private void UpdateSkybox(string endsNumber, Material skybox)
     {
+        DateSegment = endsNumber;
         ResetLight();
         var light = lights.FirstOrDefault(x => x.name.EndsWith(endsNumber));
 
