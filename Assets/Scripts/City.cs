@@ -41,6 +41,8 @@ public class City : MonoBehaviour
 
     public void DestroyCity()
     {
+        var sk = FindObjectOfType<GameManager>().ScoreKeeper;
+        PlayerPrefs.SetInt("score", sk.CurrentScore);
         SceneManager.LoadScene("Game Over");
     }
 
