@@ -8,6 +8,8 @@ public class AICity : MonoBehaviour
     public CitySpawner CitySpawner;
     public int Health = 150;
     public float Speed = 20;
+    public bool RotateRight;
+    public float distanceToStop;
 
     public Weapon[] Weapons;
     public float WeaponSpeed = 10;
@@ -19,14 +21,37 @@ public class AICity : MonoBehaviour
     void Start()
     {
         CitySpawner = FindObjectOfType<CitySpawner>();
+        distanceToStop = Random.Range(400, 490);
+        if(Random.Range(0, 10) > 5)
+        {
+            RotateRight = true;
+        }
 
         Weapons = transform.GetComponentsInChildren<Weapon>();
     }
 
+    private void Movement()
+    {
+        if(Vector3.Distance(transform.position, target) < distanceToStop)
+        {
+            if(RotateRight)
+            {
+                transform.RotateAround(Vector3.zero, Vector3.up, -0.07f);
+            }
+            else
+            {
+                transform.RotateAround(Vector3.zero, Vector3.up, 0.07f);
+            }
+        }
+        else
+        {
+            transform.position += transform.forward * Speed * Time.deltaTime;
+        }
+    }
+
     void FixedUpdate()
     {
-        //I'm always moving at the minute, a state/curve may be needed further into the jam.
-        transform.position += transform.forward * Speed * Time.deltaTime;
+        Movement();
 
         foreach (var weapon in Weapons)
         {
