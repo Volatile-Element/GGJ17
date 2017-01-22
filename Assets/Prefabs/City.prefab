@@ -19,7 +19,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4937373915857154}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Plasma Turret 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -36,7 +36,7 @@ GameObject:
   - component: {fileID: 4255729066480920}
   - component: {fileID: 33716122478831308}
   - component: {fileID: 23524398104223188}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Turret-Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -51,7 +51,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4093382672364620}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Lazer Turret 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -84,7 +84,7 @@ GameObject:
   - component: {fileID: 20748227201299074}
   - component: {fileID: 124020255666322132}
   - component: {fileID: 92125252351369718}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Camera
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -101,7 +101,7 @@ GameObject:
   - component: {fileID: 4886308979772542}
   - component: {fileID: 82458973177687300}
   - component: {fileID: 114348572720664872}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -116,7 +116,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4374833666297094}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Lazer Turret 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 20721126836195208}
   - component: {fileID: 124052589048452596}
   - component: {fileID: 92326302310494592}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Camera (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -169,7 +169,7 @@ GameObject:
   - component: {fileID: 20694132642420654}
   - component: {fileID: 124703085494434622}
   - component: {fileID: 92358035149261850}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Camera (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -205,7 +205,7 @@ GameObject:
   - component: {fileID: 4887411873799198}
   - component: {fileID: 33544352358427170}
   - component: {fileID: 23602137656037816}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Turret-Laser
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   - component: {fileID: 4889497061588694}
   - component: {fileID: 33198711064339506}
   - component: {fileID: 23586314480624506}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Turret-Plasma
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -239,7 +239,7 @@ GameObject:
   - component: {fileID: 4120160452862980}
   - component: {fileID: 33417589378787134}
   - component: {fileID: 23478780212569148}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Turret-Plasma
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -256,7 +256,7 @@ GameObject:
   - component: {fileID: 4773262854622940}
   - component: {fileID: 82932877877433468}
   - component: {fileID: 114320574526373194}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -273,7 +273,7 @@ GameObject:
   - component: {fileID: 4845121003091140}
   - component: {fileID: 82305714033246158}
   - component: {fileID: 114788418091330068}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -327,7 +327,7 @@ GameObject:
   - component: {fileID: 20285571105254546}
   - component: {fileID: 124877740187932120}
   - component: {fileID: 92930165386150230}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Camera (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -361,7 +361,7 @@ GameObject:
   - component: {fileID: 4047821140171312}
   - component: {fileID: 82869232021509696}
   - component: {fileID: 114663649353058892}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Weapon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -376,7 +376,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4561829260248216}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Plasma Turret 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -544,7 +544,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1772279565234966}
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0, y: 0, z: 0}
+  m_LocalPosition: {x: -41.52848, y: 69.79117, z: 206.51006}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 4034060554765498}
