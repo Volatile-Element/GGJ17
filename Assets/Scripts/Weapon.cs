@@ -112,7 +112,7 @@ public class Weapon : MonoBehaviour
             LazorLine.endWidth = 1.5f * BallScale;
             AudioSource.clip = LazorFire;
             AudioSource.Play();
-            var rayPos = new Vector3(transform.position.x, 1, transform.position.z);
+            var rayPos = new Vector3(transform.position.x, transform.parent.position.y, transform.position.z);
             RaycastHit hit;
             Vector3 forward = transform.forward;
             Debug.DrawRay(rayPos, forward * Distance, Color.green);
