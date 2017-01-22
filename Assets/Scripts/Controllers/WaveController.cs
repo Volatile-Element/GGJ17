@@ -85,9 +85,9 @@ public class WaveController : MonoBehaviour
     {
         StartWave();
 
-        foreach (var item in WaveItems)
+        while (WaveItems.Count > 0)
         {
-            switch (item.SpawnType)
+            switch (WaveItems[0].SpawnType)
             {
                 case Enums.EnemySpawnTypes.SHIP:
                     ShipSpawner.SpawnShip();
@@ -98,7 +98,9 @@ public class WaveController : MonoBehaviour
                 default:
                     break;
             }
-            yield return new WaitForSeconds(item.TimeTillNextSpawn);
+            yield return new WaitForSeconds(WaveItems[0].TimeTillNextSpawn);
+
+            WaveItems.RemoveAt(0);
         }
 
         EndWave();

@@ -27,7 +27,7 @@ public class CitySpawner : MonoBehaviour
         var spawnedCity = Instantiate(city, spawnPoint, Quaternion.identity) as GameObject;
         spawnedCity = SetColour(spawnedCity);
 
-        spawnedCity.transform.LookAt(Vector3.zero);
+        spawnedCity.transform.LookAt(new Vector3(0, PlaneManager.Instance.GetCurrentPlaneHeight(), 0));
 
         SpawnedCities.Add(spawnedCity);
         IncrementDifficulty();
