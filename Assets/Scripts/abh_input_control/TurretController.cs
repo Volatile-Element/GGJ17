@@ -239,22 +239,22 @@ public class TurretController : MonoBehaviour
 
             if (Input.GetAxis("RightTriggerControllerOne") == 1)
             {
-                CurrentTurretPlayerOne.GetComponent<Weapon>().Fire();
+                CurrentTurretPlayerOne.GetComponentInChildren<Weapon>().Fire();
             }
 
             if(Input.GetAxis("RightTriggerControllerTwo") == 1)
             {
-                CurrentTurretPlayerTwo.GetComponent<Weapon>().Fire();
+                CurrentTurretPlayerTwo.GetComponentInChildren<Weapon>().Fire();
             }
 
             if(Input.GetAxis("RightTriggerControllerThree") == 1)
             {
-                CurrentTurretPlayerThree.GetComponent<Weapon>().Fire();
+                CurrentTurretPlayerThree.GetComponentInChildren<Weapon>().Fire();
             }
 
             if(Input.GetAxis("RightTriggerControllerFour") == 1)
             {
-                CurrentTurretPlayerFour.GetComponent<Weapon>().Fire();
+                CurrentTurretPlayerFour.GetComponentInChildren<Weapon>().Fire();
             }
 
             if(Input.GetAxis("LeftTrigger") == 1)
@@ -283,7 +283,9 @@ public class TurretController : MonoBehaviour
 
             if(Input.GetKeyDown(KeyCode.Space))
             {
-                CurrentTurret.GetComponent<Weapon>().Fire();
+                var eh = CurrentTurret.GetComponentInChildren<Weapon>();
+                var eheh = eh.gameObject.transform.position;
+                CurrentTurret.GetComponentInChildren<Weapon>().Fire();
             }
         }
 
@@ -306,7 +308,7 @@ public class TurretController : MonoBehaviour
 
             if (Fire)
             {
-                CurrentTurret.GetComponent<Weapon>().Fire();
+                CurrentTurret.GetComponentInChildren<Weapon>().Fire();
             }
         }
     }
