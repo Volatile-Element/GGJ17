@@ -14,6 +14,7 @@ public class Weapon : MonoBehaviour
 
     public float BallScale = 1;
     public GameObject Splosion;
+    public GameObject FireBall;
 
     public Enums.FireType FireType;
 
@@ -59,25 +60,35 @@ public class Weapon : MonoBehaviour
 
     IEnumerator firePlasma(GameObject plasma)
     {
+        GameObject CurrentHit;
         AudioSource.PlayOneShot(PlasmaFire);
             while(!plasma.GetComponent<PlasmaBehaviour>().hitship)
             {
-                if (Vector3.Distance(plasma.GetComponent<PlasmaBehaviour>().startPoint, plasma.transform.position) < 1000)
-                {
-                    var eh = plasma.transform.forward;
-                    plasma.transform.Translate(Vector3.forward * 2);
-                }
+            if (Vector3.Distance(plasma.GetComponent<PlasmaBehaviour>().startPoint, plasma.transform.position) < 1000 * BallScale)
+            {
+                var eh = plasma.transform.forward;
+                plasma.transform.Translate(Vector3.forward * 2);
+            }
+            else
+            {
+                Destroy(plasma);
+                yield break;
+            }
                 yield return null;
             }
+        CurrentHit = plasma.GetComponent<PlasmaBehaviour>().CurrentCollision;
         var splosion = Instantiate(Splosion, plasma.transform.position, plasma.transform.rotation);
         StartCoroutine("Explode", splosion);
+        var fireBall = Instantiate(FireBall, plasma.transform.position + new Vector3(0f, BallScale * 4, 0f), plasma.transform.rotation, CurrentHit.transform);
+        fireBall.transform.localScale = new Vector3(BallScale * 5, BallScale * 5, BallScale * 5);
         yield return new WaitForSeconds(0.4f);
         Destroy(plasma);
+
     }
 
     IEnumerator wait()
     {
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(0.3f);
         firing = false;
     }
 
@@ -113,6 +124,8 @@ public class Weapon : MonoBehaviour
                 hit.transform.SendMessage("DealDamage", Damage);
                 var splosion = Instantiate(Splosion, hit.transform.position, hit.transform.rotation);
                 StartCoroutine("Explode", splosion);
+                var fireBall = Instantiate(FireBall, hit.transform.position + new Vector3(0f, BallScale * 4, 0f), hit.transform.rotation, hit.transform);
+                fireBall.transform.localScale = new Vector3(BallScale * 5, BallScale * 5, BallScale * 5);
                 yield return new WaitForSeconds(0.4f);
             }
             else
@@ -134,7 +147,7 @@ public class Weapon : MonoBehaviour
     IEnumerator Explode(GameObject Explosion)
     {
         var ParticleSystems = Explosion.GetComponentsInChildren<ParticleSystem>();
-        var psm = Explosion.GetComponent<ParticleSystemMultiplier>();
+        var psm = Explosion.GetComponent<SplosionStuff>();
         while(psm.sploding)
         {
             psm.sploding = false;

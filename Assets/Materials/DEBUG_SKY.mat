@@ -7,10 +7,10 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: DEBUG_SKY
-  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_Shader: {fileID: 4800000, guid: d8eba2a28ee81ef4fad85e43526a8ac9, type: 3}
   m_ShaderKeywords: _EMISSION _GLOSSYREFLECTIONS_OFF _SPECULARHIGHLIGHTS_OFF
   m_LightmapFlags: 1
-  m_CustomRenderQueue: -1
+  m_CustomRenderQueue: 2000
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -74,6 +74,9 @@ Material:
         name: _BumpScale
       second: 1
     - first:
+        name: _CloudDensity
+      second: 1
+    - first:
         name: _Cutoff
       second: 0.5
     - first:
@@ -91,6 +94,12 @@ Material:
     - first:
         name: _GlossyReflections
       second: 0
+    - first:
+        name: _Iterations
+      second: 325
+    - first:
+        name: _MarchIterations
+      second: 50
     - first:
         name: _Metallic
       second: 0
@@ -116,12 +125,24 @@ Material:
         name: _UVSec
       second: 0
     - first:
+        name: _ViewDistance
+      second: 5
+    - first:
         name: _ZWrite
       second: 1
     m_Colors:
     - first:
+        name: _CloudColor
+      second: {r: 0.625, g: 0.625, b: 0.625, a: 1}
+    - first:
+        name: _CloudDensity
+      second: {r: 0.18, g: 0.8, b: 0, a: 0}
+    - first:
         name: _Color
-      second: {r: 0.78676474, g: 0.78676474, b: 0.78676474, a: 1}
+      second: {r: 0.625, g: 0.625, b: 0.625, a: 1}
     - first:
         name: _EmissionColor
       second: {r: 0, g: 0, b: 0, a: 1}
+    - first:
+        name: _SkyColor
+      second: {r: 0.176, g: 0.478, b: 0.871, a: 1}
