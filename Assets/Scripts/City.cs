@@ -12,6 +12,7 @@ public class City : MonoBehaviour
     public bool Moving;
 
     public UnityEvent OnHealthChanged = new UnityEvent();
+    public UnityEvent OnMove = new UnityEvent();
 
     void Start()
     {
@@ -55,7 +56,7 @@ public class City : MonoBehaviour
     }
     private void Move()
     {
-        float speed = 20;
+        float speed = 100;
 
         float step = speed * Time.deltaTime;
         transform.position = Vector3.MoveTowards(transform.position, MoveTarget, step);
@@ -64,5 +65,7 @@ public class City : MonoBehaviour
         {
             Moving = false;
         }
+
+        OnMove.Invoke();
     }
 }

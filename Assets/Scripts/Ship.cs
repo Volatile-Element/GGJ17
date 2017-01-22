@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Ship : MonoBehaviour
 {
+    WaveController WaveController = new WaveController();
+
     public Vector3 target;
     public ShipSpawner ShipSpawner;
     public int Health = 50;
@@ -16,6 +18,9 @@ public class Ship : MonoBehaviour
     {
         ShipSpawner = FindObjectOfType<ShipSpawner>();
         skyboxController = FindObjectOfType<SkyBoxController>();
+        WaveController = FindObjectOfType<WaveController>();
+
+        WaveController.OnWaveChange.AddListener(SetTarget);
     }
 	
 	void FixedUpdate ()
@@ -57,5 +62,10 @@ public class Ship : MonoBehaviour
     {
         collision.gameObject.SendMessage("DealDamage", 25);
         DestroyShip();
+    }
+
+    public void SetTarget(int wave)
+    {
+        target = new Vector3(0, PlaneManager.Instance.GetCurrentPlaneHeight(), 0);
     }
 }

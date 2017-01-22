@@ -39,7 +39,7 @@ public class ShipSpawner : MonoBehaviour
             spawnedPart.transform.parent = spawnedShip.transform;
         }
 
-        spawnedShip.transform.LookAt(Vector3.zero);
+        spawnedShip.transform.LookAt(new Vector3(0, PlaneManager.Instance.GetCurrentPlaneHeight(), 0));
 
         SpawnedShips.Add(spawnedShip);
         IncrementDifficulty();
