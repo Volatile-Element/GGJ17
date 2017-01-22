@@ -8,18 +8,34 @@ public class Ship : MonoBehaviour
     public ShipSpawner ShipSpawner;
     public int Health = 50;
     public float Speed = 20;
+    public bool LightsOn = false;
+    SkyBoxController skyboxController;
 
     // Use this for initialization
     void Start ()
     {
         ShipSpawner = FindObjectOfType<ShipSpawner>();
+        skyboxController = FindObjectOfType<SkyBoxController>();
     }
 	
 	void FixedUpdate ()
     {
         //I'm always moving at the minute, a state/curve may be needed further into the jam.
         transform.position += transform.forward * Speed * Time.deltaTime;
-	}
+        LightChecker();
+    }
+
+    public void LightChecker()
+    {
+        if(skyboxController.DateSegment == "1" || skyboxController.DateSegment == "4" || skyboxController.DateSegment == "5")
+        {
+            GetComponentInChildren<Light>().enabled = true;
+        }
+        else
+        {
+            GetComponentInChildren<Light>().enabled = false;
+        }
+    }
 
     public void DealDamage(int damage)
     {

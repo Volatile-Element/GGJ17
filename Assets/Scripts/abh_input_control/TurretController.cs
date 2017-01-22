@@ -48,7 +48,7 @@ public class TurretController : MonoBehaviour
         CurrentTurretPlayerFour = null;
         TurretOneOwner = TurretIdentifierEnum.PlayerIdentifier.PlayerOne;
 
-        SpeedMultiplier = 1.3F;
+        SpeedMultiplier = 1F;
     }
 
     void Update()
@@ -257,10 +257,10 @@ public class TurretController : MonoBehaviour
                 CurrentTurretPlayerFour.GetComponentInChildren<Weapon>().Fire();
             }
 
-            if(Input.GetAxis("LeftTrigger") == 1)
-            {
-                GetComponent<CityBlow>().BlowUp();
-            }
+            //if(Input.GetAxis("LeftTrigger") == 1)
+            //{
+            //    GetComponent<CityBlow>().BlowUp();
+            //}
         }
     }
 
@@ -270,11 +270,11 @@ public class TurretController : MonoBehaviour
         {
             if (Input.GetKey(KeyCode.A))
             {
-                Direction = -1;
+                Direction = -1 * SpeedMultiplier;
             }
             else if (Input.GetKey(KeyCode.D))
             {
-                Direction = 1;
+                Direction = 1 * SpeedMultiplier;
             }
             else if (!Input.GetKey(KeyCode.A) && !Input.GetKey(KeyCode.D))
             {
