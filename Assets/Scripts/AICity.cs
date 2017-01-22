@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class AICity : MonoBehaviour
 {
@@ -17,9 +18,12 @@ public class AICity : MonoBehaviour
     public float FireSpeed = 3;
     public float FireDistance = 500;
 
+    public AudioClip Siren;
+    private AudioSource AudioSource;
     // Use this for initialization
     void Start()
     {
+        AudioSource = GetComponent<AudioSource>();
         CitySpawner = FindObjectOfType<CitySpawner>();
         distanceToStop = Random.Range(400, 490);
         if(Random.Range(0, 10) > 5)
@@ -34,6 +38,13 @@ public class AICity : MonoBehaviour
     {
         if(Vector3.Distance(transform.position, target) < distanceToStop)
         {
+            if(AudioSource.isPlaying == false)
+            {
+                AudioSource.clip = Siren;
+                AudioSource.loop = true;
+                AudioSource.Play();
+            }
+            
             if(RotateRight)
             {
                 transform.RotateAround(Vector3.zero, Vector3.up, -0.07f);
@@ -88,8 +99,10 @@ public class AICity : MonoBehaviour
 
     public void DestroyCity()
     {
+        AudioSource.Stop();
         CitySpawner.DestroyCity(gameObject);
         GameManager.Instance.DifficultyManager.IncrementDestroyedCities();
+        
     }
 
     void OnCollisionEnter(Collision collision)

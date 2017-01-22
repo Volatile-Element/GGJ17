@@ -223,6 +223,7 @@ GameObject:
   - component: {fileID: 4339787655524068}
   - component: {fileID: 135294792750359690}
   - component: {fileID: 114082229102579254}
+  - component: {fileID: 82466325592982554}
   m_Layer: 2
   m_Name: AI City
   m_TagString: Untagged
@@ -1213,6 +1214,86 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1539273912315378}
   m_Mesh: {fileID: 4300000, guid: 8588456c9767e2748af674d81676166a, type: 3}
+--- !u!82 &82466325592982554
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1424199378111562}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 0
+  m_Volume: 0.351
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - serializedVersion: 2
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 2
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
 --- !u!92 &92221684343776536
 Behaviour:
   m_ObjectHideFlags: 1
@@ -1256,10 +1337,13 @@ MonoBehaviour:
   CitySpawner: {fileID: 0}
   Health: 150
   Speed: 20
+  RotateRight: 0
+  distanceToStop: 0
   Weapons: []
   WeaponSpeed: 10
   FireSpeed: 3
   FireDistance: 500
+  Siren: {fileID: 8300000, guid: 25e357831d4422c48b8b31762de538dd, type: 3}
 --- !u!114 &114567866271956402
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1271,10 +1355,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8e74e5ebc10424696cff0e39b19097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LazorCharge: {fileID: 0}
+  LazorFire: {fileID: 0}
+  PlasmaFire: {fileID: 0}
   Distance: 500
   Damage: 25
+  BallScale: 1
+  Splosion: {fileID: 0}
+  FireBall: {fileID: 0}
   FireType: 0
   LazorBall: {fileID: 1066563514994976, guid: e92e55d029b32e040b69294db72f7a41, type: 2}
+  PlasmaBall: {fileID: 0}
+  AudioSource: {fileID: 0}
 --- !u!114 &114657609166564422
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1286,10 +1378,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8e74e5ebc10424696cff0e39b19097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LazorCharge: {fileID: 0}
+  LazorFire: {fileID: 0}
+  PlasmaFire: {fileID: 0}
   Distance: 500
   Damage: 25
+  BallScale: 1
+  Splosion: {fileID: 0}
+  FireBall: {fileID: 0}
   FireType: 0
   LazorBall: {fileID: 1066563514994976, guid: e92e55d029b32e040b69294db72f7a41, type: 2}
+  PlasmaBall: {fileID: 0}
+  AudioSource: {fileID: 0}
 --- !u!114 &114704507349551220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1301,10 +1401,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8e74e5ebc10424696cff0e39b19097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LazorCharge: {fileID: 0}
+  LazorFire: {fileID: 0}
+  PlasmaFire: {fileID: 0}
   Distance: 500
   Damage: 25
+  BallScale: 1
+  Splosion: {fileID: 0}
+  FireBall: {fileID: 0}
   FireType: 0
   LazorBall: {fileID: 1066563514994976, guid: e92e55d029b32e040b69294db72f7a41, type: 2}
+  PlasmaBall: {fileID: 0}
+  AudioSource: {fileID: 0}
 --- !u!114 &114761216728410522
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1316,10 +1424,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b8e74e5ebc10424696cff0e39b19097, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  LazorCharge: {fileID: 0}
+  LazorFire: {fileID: 0}
+  PlasmaFire: {fileID: 0}
   Distance: 500
   Damage: 25
+  BallScale: 1
+  Splosion: {fileID: 0}
+  FireBall: {fileID: 0}
   FireType: 0
   LazorBall: {fileID: 1066563514994976, guid: e92e55d029b32e040b69294db72f7a41, type: 2}
+  PlasmaBall: {fileID: 0}
+  AudioSource: {fileID: 0}
 --- !u!124 &124092464297362580
 Behaviour:
   m_ObjectHideFlags: 1
