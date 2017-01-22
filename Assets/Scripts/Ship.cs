@@ -154,9 +154,9 @@ public class Ship : MonoBehaviour
         GameManager.Instance.DifficultyManager.IncrementDestroyedShips();
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnTriggerEnter(Collider collider)
     {
-        collision.gameObject.SendMessage("DealDamage", 25);
+        collider.gameObject.SendMessage("DealDamage", 25);
         DestroyShip();
     }
 
