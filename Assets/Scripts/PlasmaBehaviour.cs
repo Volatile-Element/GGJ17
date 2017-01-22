@@ -27,7 +27,7 @@ public class PlasmaBehaviour : MonoBehaviour {
     {
         CurrentCollision = c.gameObject;
 
-        if(CurrentCollision.GetComponent<Ship>() != null)
+        if(CurrentCollision.GetComponent<Ship>() != null || CurrentCollision.GetComponent<AICity>() != null)
         {
             hitship = true;
             c.transform.SendMessage("DealDamage", Damage);

@@ -58,8 +58,8 @@ public class CitySpawner : MonoBehaviour
     {
         int angle = Random.Range(0, 360);
 
-        var mineX = 1000 * Mathf.Cos(angle);
-        var mineY = 1000 * Mathf.Sin(angle);
+        var mineX = 2000 * Mathf.Cos(angle);
+        var mineY = 2000 * Mathf.Sin(angle);
 
         return new Vector3(mineX, PlaneManager.Instance.GetCurrentPlaneHeight(), mineY);
     }
