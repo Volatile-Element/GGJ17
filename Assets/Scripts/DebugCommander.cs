@@ -37,7 +37,13 @@ public class DebugCommander : MonoBehaviour
             new DebugInput() { Key = KeyCode.D, Description = "Destroys all ships.", Function = DestroyAllShips },
             new DebugInput() { Key = KeyCode.G, Description = "Goes to main menu.", Function = GoToMainMenu },
             new DebugInput() { Key = KeyCode.G, Description = "Goes to game over screen.", Function = GoToGameOver },
+            new DebugInput() { Key = KeyCode.M, Description = "Goes to Multplayer split screen.", Function = MultiplayerSplitScreen }
         };
+    }
+
+    private void MultiplayerSplitScreen()
+    {
+        FindObjectOfType<CameraControl>().MultiplayerSplitScreen = true;
     }
 
     private void SpawnCity()
