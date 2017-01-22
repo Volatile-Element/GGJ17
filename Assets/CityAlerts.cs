@@ -23,7 +23,9 @@ public class CityAlerts : MonoBehaviour {
 
     public void SoundAlarm()
     {
-        AudioSource.PlayOneShot(SpawnAlarm);
+        AudioSource.clip = SpawnAlarm;
+        AudioSource.loop = false;
+        AudioSource.Play();
     }
 
     public void SoundSiren()
