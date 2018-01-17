@@ -11,7 +11,7 @@ public class UIWaveController : MonoBehaviour
 	// Use this for initialization
 	void Start ()
     {
-        var child = transform.FindChild("Text - Wave #");
+        var child = transform.Find("Text - Wave #");
         WaveText = child.GetComponent<Text>();
         WaveAnimation = child.GetComponent<Animator>();
 
